@@ -93,19 +93,19 @@ body {
     line-height: 50px;
   }
 
-  .keypad.green {
+  .keypad > button.green {
     background: #5ac85a;
     color: #fff;
     transition: all 0.3s ease-in;
   }
 
-  .keypad.yellow {
+  .keypad > button.yellow {
     background: #e2cc68;
     color: #fff;
     transition: all 0.3s ease-in;
   }
 
-  .keypad.grey {
+  .keypad > button.grey {
     background: #a1a1a1;
     color: #fff;
     transition: all 0.3s ease-in;

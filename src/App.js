@@ -6,7 +6,7 @@ const App = () => {
      useEffect(() => {
         fetch('http://localhost:3001/solutions').then(res => res.json()).then(data => {
             const randomSolution = data[Math.floor(Math.random()*data.length)];
-            setSolution(randomSolution.name);
+            setSolution(randomSolution.name.toLowerCase());
         });
     }, [setSolution])
     

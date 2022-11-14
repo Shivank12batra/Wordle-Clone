@@ -14,7 +14,8 @@ const useWordle = (solution) => {
         console.log('Adding a new guess:')
         let solutionArray = [...solution];
         let formattedGuess = [...currentGuess].map((l, idx) => {
-            if (currentGuess[idx] === solutionArray[idx]) {
+            console.log(l)
+            if (currentGuess[idx].toLowerCase() === solutionArray[idx]) {
                 return {key : l, color : 'green'}
             }
             else if (solutionArray.includes(l)) {

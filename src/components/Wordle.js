@@ -3,9 +3,10 @@ import useWordle from '../hooks/useWordle';
 import Grid from './Grid';
 import Keypad from './Keypad';
 import Modal from './Modal';
+import errorMessage from './errorMessage';
 
 export default function Wordle({solution}) {
-    const {currentGuess, handleKeyUp, clickHandler, usedKeys, guesses, turn, isCorrect} = useWordle(solution)
+    const {currentGuess, handleKeyUp, clickHandler, usedKeys, guesses, turn, showError, setShowError, isCorrect} = useWordle(solution)
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -13,12 +14,12 @@ export default function Wordle({solution}) {
 
         // if user wins the game
         if (isCorrect) {
-            console.log('congrats, you win!')
+            setTimeout(() => setShowModal(true), 2000)
             window.removeEventListener('keyup', handleKeyUp)
         }
 
         if (turn > 5 && !isCorrect) {
-            console.log('sorry, you have exhausted all your six turns!')
+            setTimeout(() => setShowModal(true), 2000)
             window.removeEventListener('keyup', handleKeyUp)
         }
 
@@ -34,9 +35,10 @@ export default function Wordle({solution}) {
         <div>
             <div>Wordle Is: {solution}</div>
             <div>Current Guess: {currentGuess}</div>
-            <Grid currentGuess={currentGuess} guesses={guesses} turn={turn}/>
+            <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} setShowError={setShowError}/>
             <Keypad clickHandler={clickHandler} usedKeys={usedKeys}/>
             {showModal && <Modal isCorrect={isCorrect} turn={turn} solution={solution}/>}
+            {showError && <errorMessage showError={showError}/>}
         </div>
     )
 }

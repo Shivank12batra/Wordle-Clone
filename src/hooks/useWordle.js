@@ -7,6 +7,7 @@ const useWordle = (solution) => {
     const [history, setHistory] = useState([]); // each guess is a string
     const [isCorrect, setIsCorrect] = useState(false); // whether the guess is correct or not
     const [usedKeys, setUsedKeys] = useState({}); // {a: 'green', b: 'yellow', c: 'grey'}
+    const [showError, setShowError] = useState(''); // error message: str
  
     // format a guess into an array of letter objects
     // e.g.[{key : 'a', color : 'yellow'}]
@@ -72,17 +73,20 @@ const useWordle = (solution) => {
         if (key === 'Enter') {
             // only add guess if turn is less than 6
             if (turn > 6) {
+                setShowError('Sorry! you have exhausted all your turns!')
                 console.log('You exhausted all yours turns!')
                 return
             }
             // do not allow duplicate words
             if (history.includes(currentGuess)) {
+                setShowError('You have already guessed this word. Try another!')
                 console.log('You have already guessed this word. Try another!')
                 return
             }
             // check words is 6 char long
             if (currentGuess.length !== 6) {
                 console.log(currentGuess);
+                setShowError('Word must be 6 characters length!')
                 console.log('Word must be 6 characters length!')
                 return
             }
@@ -132,7 +136,7 @@ const useWordle = (solution) => {
 
     }
 
-    return {turn, currentGuess, guesses, isCorrect, usedKeys, handleKeyUp, clickHandler};
+    return {turn, currentGuess, guesses, isCorrect, usedKeys, showError, setShowError, handleKeyUp, clickHandler};
 
 
 }

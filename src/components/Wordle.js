@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import useWordle from '../hooks/useWordle';
 import Grid from './Grid';
 import Keypad from './Keypad';
+import Error from './Error';
 import Modal from './Modal';
-import errorMessage from './errorMessage';
 
 export default function Wordle({solution}) {
-    const {currentGuess, handleKeyUp, clickHandler, usedKeys, guesses, turn, showError, setShowError, isCorrect} = useWordle(solution)
+    const {currentGuess, setCurrentGuess, handleKeyUp, clickHandler, usedKeys, guesses, turn, showError, setShowError, isCorrect} = useWordle(solution)
+    console.log(showError);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
@@ -35,10 +36,10 @@ export default function Wordle({solution}) {
         <div>
             <div>Wordle Is: {solution}</div>
             <div>Current Guess: {currentGuess}</div>
-            <Grid currentGuess={currentGuess} guesses={guesses} turn={turn} setShowError={setShowError}/>
+            <Grid currentGuess={currentGuess} setCurrentGuess={setCurrentGuess} guesses={guesses} turn={turn} showError={showError} setShowError={setShowError}/>
             <Keypad clickHandler={clickHandler} usedKeys={usedKeys}/>
+            {showError && <Error showError={showError}/>}
             {showModal && <Modal isCorrect={isCorrect} turn={turn} solution={solution}/>}
-            {showError && <errorMessage showError={showError}/>}
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Row({ guess, currentGuess, setShowError}) {
+export default function Row({ guess, currentGuess, setCurrentGuess, showError, setShowError}) {
 
   if (guess) {
     return (
@@ -13,19 +13,24 @@ export default function Row({ guess, currentGuess, setShowError}) {
   }
   if (currentGuess) {
     let letters = currentGuess.split('');
-    if (letters > 6) {
-      setShowError('Name cannot be greater than 6 letters!')
-      return
+    if (letters.length > 6) {
+      setShowError('Name cannot be greater than  6 letters!')
+      letters = letters.slice(0, 6);
+      setCurrentGuess(letters.join(''));
+    } else {
+      if (showError === 'Name cannot be greater than 6 letters!') {
+        setShowError('');
+      }
     }
 
     return (
-      <div className="row current">
+      <div className='row current'>
         {letters.map((l, i) => (
           <div key={i} className="filled">{l}</div>
         ))}
         {[...Array(6 - letters.length)].map((_, i) => (
-          <div key={i}></div>
-        ))}
+            <div key={i}></div>
+          ))}
       </div>
     )
   }

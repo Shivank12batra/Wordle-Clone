@@ -19,6 +19,3 @@ const App = () => {
 }
 
 export default App;
-
-// Game Setup:
-// User has six tries, 

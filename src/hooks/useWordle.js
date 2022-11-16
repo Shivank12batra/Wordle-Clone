@@ -65,6 +65,7 @@ const useWordle = (solution) => {
             return newKeys;
         })
         setCurrentGuess('');
+        setShowError('');
     }
 
     // handle keyup event to update currentGuess
@@ -87,16 +88,19 @@ const useWordle = (solution) => {
             if (currentGuess.length !== 6) {
                 console.log(currentGuess);
                 setShowError('Word must be 6 characters length!')
+                console.log(showError)
                 console.log('Word must be 6 characters length!')
                 return
             }
             formatGuess(currentGuess);
         }
         if (key === 'Backspace') {
+            setShowError('');
             setCurrentGuess(prev => prev.slice(0, -1));
             return
         }
         if (/^[A-Za-z]$/.test(key)) {
+            setShowError('');
             setCurrentGuess(prev => (prev + key));
             return
         }
@@ -114,11 +118,13 @@ const useWordle = (solution) => {
             }
             // do not allow duplicate words
             if (history.includes(currentGuess)) {
+                setShowError('You have already guessed this word. Try another!')
                 console.log('You have already guessed this word. Try another!')
                 return
             }
             // check words is 6 char long
             if (currentGuess.length !== 6) {
+                setShowError('Word must be 6 characters length!')
                 console.log(currentGuess);
                 console.log('Word must be 6 characters length!')
                 return
@@ -126,17 +132,19 @@ const useWordle = (solution) => {
             formatGuess(currentGuess);
         }
         if (key === 'Backspace') {
+            setShowError('');
             setCurrentGuess(prev => prev.slice(0, -1));
             return
         }
         if (/^[A-Za-z]$/.test(key)) {
+            setShowError('');
             setCurrentGuess(prev => (prev + key));
             return
         }
 
     }
 
-    return {turn, currentGuess, guesses, isCorrect, usedKeys, showError, setShowError, handleKeyUp, clickHandler};
+    return {turn, currentGuess, setCurrentGuess, guesses, isCorrect, usedKeys, showError, setShowError, handleKeyUp, clickHandler};
 
 
 }

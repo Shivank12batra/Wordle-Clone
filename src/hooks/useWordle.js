@@ -12,10 +12,8 @@ const useWordle = (solution, players) => {
     // format a guess into an array of letter objects
     // e.g.[{key : 'a', color : 'yellow'}]
     const formatGuess = () => {
-        console.log('Adding a new guess:')
         let solutionArray = [...solution];
         let formattedGuess = [...currentGuess].map((l, idx) => {
-            console.log(l)
             if (currentGuess[idx].toLowerCase() === solutionArray[idx]) {
                 return {key : l, color : 'green'}
             }
@@ -75,26 +73,20 @@ const useWordle = (solution, players) => {
             // only add guess if turn is less than 6
             if (turn > 6) {
                 setShowError('Sorry! you have exhausted all your turns!')
-                console.log('You exhausted all yours turns!')
                 return
             }
             // do not allow duplicate words
             if (history.includes(currentGuess)) {
                 setShowError('You have already guessed this word. Try another!')
-                console.log('You have already guessed this word. Try another!')
                 return
             }
-            if (!Array(players.keys()).includes(currentGuess)) {
+            if (!players.includes(currentGuess.toLowerCase())) {
                 setShowError('Not a relevant name!')
-                console.log('You have already guessed this word. Try another!')
                 return
             }
             // check words is 6 char long
             if (currentGuess.length !== 6) {
-                console.log(currentGuess);
                 setShowError('Word must be 6 characters length!')
-                console.log(showError)
-                console.log('Word must be 6 characters length!')
                 return
             }
             formatGuess(currentGuess);
@@ -118,25 +110,20 @@ const useWordle = (solution, players) => {
         if (key === 'Enter') {
             // only add guess if turn is less than 6
             if (turn > 6) {
-                console.log('You exhausted all yours turns!')
                 return
             }
             // do not allow duplicate words
             if (history.includes(currentGuess)) {
                 setShowError('You have already guessed this word. Try another!')
-                console.log('You have already guessed this word. Try another!')
                 return
             }
-            if (!Array(players.keys()).includes(currentGuess)) {
+            if (!players.includes(currentGuess)) {
                 setShowError('Not a relevant name!')
-                console.log('You have already guessed this word. Try another!')
                 return
             }
             // check words is 6 char long
             if (currentGuess.length !== 6) {
                 setShowError('Word must be 6 characters length!')
-                console.log(currentGuess);
-                console.log('Word must be 6 characters length!')
                 return
             }
             formatGuess(currentGuess);

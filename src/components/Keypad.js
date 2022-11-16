@@ -41,7 +41,6 @@ export default function Keypad({clickHandler, usedKeys}) {
                 buttonStyle = 'btn-style'
             } else {buttonStyle = 'btn'}
             color = usedKeys[l.key]
-            console.log(color)
            return <button key={i} className={`${buttonStyle} ${color}`} onClick={e => clickHandler(e.target.innerHTML)}>{l.key}</button>
         })}
     </div>

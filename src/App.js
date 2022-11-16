@@ -4,15 +4,16 @@ import Rules from './components/Rules';
 
 const App = () => {
     const [solution, setSolution] = useState('');
-    const [players, setPlayers] = useState({});
+    const [players, setPlayers] = useState([]);
     const [gameInfo, setGameInfo] = useState(false);
      useEffect(() => {
         fetch('http://localhost:3001/solutions').then(res => res.json()).then(data => {
+            const playerNames = data.map((item) => item.name.toLowerCase())
             const randomSolution = data[Math.floor(Math.random()*data.length)];
             setSolution(randomSolution.name.toLowerCase());
-            setPlayers(data);
+            setPlayers(playerNames);
         });
-    }, [setSolution])
+    }, [])
 
     const clickHandler = () => {
         setGameInfo(true);

@@ -12,7 +12,7 @@ const App = () => {
     
     return (
         <div className='App'>
-            <h1>Footie Lingo</h1>
+                <h1> <i className='fas fa-futbol'></i> Footie Lingo <i className='fas fa-futbol'></i></h1>
             {solution && <Wordle solution={solution}/>}
         </div>
     )

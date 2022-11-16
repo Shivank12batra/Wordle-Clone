@@ -5,8 +5,8 @@ import Keypad from './Keypad';
 import Error from './Error';
 import Modal from './Modal';
 
-export default function Wordle({solution}) {
-    const {currentGuess, setCurrentGuess, handleKeyUp, clickHandler, usedKeys, guesses, turn, showError, setShowError, isCorrect} = useWordle(solution)
+export default function Wordle({solution, players}) {
+    const {currentGuess, setCurrentGuess, handleKeyUp, clickHandler, usedKeys, guesses, turn, showError, setShowError, isCorrect} = useWordle(solution, players)
     console.log(showError);
     const [showModal, setShowModal] = useState(false);
 

@@ -4,11 +4,13 @@ import Rules from './components/Rules';
 
 const App = () => {
     const [solution, setSolution] = useState('');
+    const [players, setPlayers] = useState({});
     const [gameInfo, setGameInfo] = useState(false);
      useEffect(() => {
         fetch('http://localhost:3001/solutions').then(res => res.json()).then(data => {
             const randomSolution = data[Math.floor(Math.random()*data.length)];
             setSolution(randomSolution.name.toLowerCase());
+            setPlayers(data);
         });
     }, [setSolution])
 
@@ -25,7 +27,7 @@ const App = () => {
             </div>
             <span><i onClick={clickHandler} className="fa fa-question-circle question-style"></i></span>
             {gameInfo && <Rules setGameInfo={setGameInfo}/>}
-            {solution && <Wordle solution={solution}/>}
+            {solution && <Wordle solution={solution} players={players}/>}
         </div>
     )
 }

@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const useWordle = (solution) => {
+const useWordle = (solution, players) => {
     const [turn, setTurn] = useState(0);
     const [currentGuess, setCurrentGuess] = useState(''); // current guess being typed
     const [guesses, setGuesses] = useState([...Array(6)]); // each guess is an array
@@ -84,6 +84,11 @@ const useWordle = (solution) => {
                 console.log('You have already guessed this word. Try another!')
                 return
             }
+            if (!Array(players.keys()).includes(currentGuess)) {
+                setShowError('Not a relevant name!')
+                console.log('You have already guessed this word. Try another!')
+                return
+            }
             // check words is 6 char long
             if (currentGuess.length !== 6) {
                 console.log(currentGuess);
@@ -119,6 +124,11 @@ const useWordle = (solution) => {
             // do not allow duplicate words
             if (history.includes(currentGuess)) {
                 setShowError('You have already guessed this word. Try another!')
+                console.log('You have already guessed this word. Try another!')
+                return
+            }
+            if (!Array(players.keys()).includes(currentGuess)) {
+                setShowError('Not a relevant name!')
                 console.log('You have already guessed this word. Try another!')
                 return
             }

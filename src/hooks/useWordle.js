@@ -80,13 +80,13 @@ const useWordle = (solution, players) => {
                 setShowError('You have already guessed this word. Try another!')
                 return
             }
-            if (!players.includes(currentGuess.toLowerCase())) {
-                setShowError('Not a relevant name!')
-                return
-            }
-            // check words is 6 char long
+            // check words is 6 char long or not
             if (currentGuess.length !== 6) {
                 setShowError('Word must be 6 characters length!')
+                return
+            }
+            if (!players.includes(currentGuess.toLowerCase())) {
+                setShowError('Not a relevant name!')
                 return
             }
             formatGuess(currentGuess);
@@ -117,13 +117,13 @@ const useWordle = (solution, players) => {
                 setShowError('You have already guessed this word. Try another!')
                 return
             }
-            if (!players.includes(currentGuess)) {
-                setShowError('Not a relevant name!')
-                return
-            }
-            // check words is 6 char long
+            // check words is 6 char long or not
             if (currentGuess.length !== 6) {
                 setShowError('Word must be 6 characters length!')
+                return
+            }
+            if (!players.includes(currentGuess)) {
+                setShowError('Not a relevant name!')
                 return
             }
             formatGuess(currentGuess);

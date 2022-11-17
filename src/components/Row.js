@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 export default function Row({ guess, currentGuess, setCurrentGuess, showError, setShowError}) {
 
@@ -14,15 +14,9 @@ export default function Row({ guess, currentGuess, setCurrentGuess, showError, s
   if (currentGuess) {
     let letters = currentGuess.split('');
     if (letters.length > 6) {
-      setShowError('Name cannot be greater than  6 letters!')
-      letters = letters.slice(0, 6);
-      setCurrentGuess(letters.join(''));
-    } else {
-      if (showError === 'Name cannot be greater than 6 letters!') {
-        setShowError('');
-      }
+      letters = letters.slice(0, 6)
+      setCurrentGuess(letters.join(''))
     }
-
     return (
       <div className='row current'>
         {letters.map((l, i) => (

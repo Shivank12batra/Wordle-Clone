@@ -36,6 +36,7 @@ export default function Keypad({clickHandler, usedKeys}) {
     let color = '';
   return (
     <div className='keypad'>
+        {console.log('hello')}
         {letters.map((l, i) => {
             if (l.key === 'Enter' || l.key === 'Backspace') {
                 buttonStyle = 'btn-style'

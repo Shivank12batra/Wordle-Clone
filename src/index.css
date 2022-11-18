@@ -160,13 +160,13 @@ body {
     /* background: rgba(255, 255, 255, 0.7); */
     position: fixed;
     /* height: 100%; */
-    width: 90%;
+    width: 100%;
     top: 0;
     left: 0;
   }
 
   .error-message > div {
-    max-width: 500px;
+    max-width: 31.25rem;
     background: #333;
     padding: 10px;
     border-radius: 10px;

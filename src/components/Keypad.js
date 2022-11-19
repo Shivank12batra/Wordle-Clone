@@ -25,9 +25,9 @@ const letters  = [
   {'key' : 'c'},
   {'key' : 'v'},
   {'key' : 'b'},
+  {'key' : 'Enter'},
   {'key' : 'n'},
   {'key' : 'm'},
-  {'key' : 'Enter'},
   {'key' : 'Backspace'}
 ]
 
